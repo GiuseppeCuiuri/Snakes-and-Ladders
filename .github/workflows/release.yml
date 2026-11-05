@@ -1,0 +1,41 @@
+name: Release
+
+# Pushing a tag such as v1.0.0 builds the jar, tests it and publishes a GitHub release with the jar
+# attached.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The build does not need the token; only the last step does, through GH_TOKEN.
+          persist-credentials: false
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Check that the tag matches the version in pom.xml
+        run: |
+          version=$(sed -n 's|^  <version>\(.*\)</version>|\1|p' pom.xml | head -n 1)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "The tag $GITHUB_REF_NAME does not match the version $version in pom.xml"
+            exit 1
+          fi
+      - name: Build and test
+        run: ./mvnw -B -ntp verify
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          "target/snakes-and-ladders-${GITHUB_REF_NAME#v}.jar"
+          --title "Snakes and Ladders ${GITHUB_REF_NAME#v}"
+          --notes "Needs Java 21 or newer. Download the jar, then run: java -jar snakes-and-ladders-${GITHUB_REF_NAME#v}.jar"

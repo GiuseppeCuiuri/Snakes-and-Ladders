@@ -1,0 +1,16 @@
+' Shared look of every diagram: plain, readable, no shadows.
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam roundCorner 8
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+skinparam ArrowColor #555555
+skinparam BorderColor #555555
+skinparam BackgroundColor #FFFFFF
+skinparam ClassBackgroundColor #FAF7F0
+skinparam ComponentBackgroundColor #FAF7F0
+skinparam UsecaseBackgroundColor #FAF7F0
+skinparam NoteBackgroundColor #FFF8DC
+skinparam NoteBorderColor #C9B458

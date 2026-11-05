@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Minor and patch updates come in one pull request; each major update comes on its own, so a
+  # breaking one does not hold back the others.
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      maven-minor-and-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      actions-minor-and-patch:
+        update-types: [minor, patch]

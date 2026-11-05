@@ -1,0 +1,27 @@
+@startuml use-cases
+!include style.iuml
+title Use cases
+
+left to right direction
+actor "Observer" as observer
+actor "Developer\n(command line)" as developer
+
+rectangle "Snakes and Ladders" {
+  usecase "Watch a simulated game\nwith a text trace" as watch
+  usecase "Choose the number\nof players" as players
+  usecase "Configure the board\n(preset or random, optional rules)" as configure
+  usecase "Save / load\na configuration" as files
+  usecase "Advance step by step\nor automatically" as advance
+  usecase "Replay a game\nfrom its seed" as replay
+  usecase "Play a batch of games\nand read statistics" as batch
+}
+
+observer --> watch
+watch ..> players : <<include>>
+watch ..> advance : <<include>>
+configure ..> watch : <<extend>>
+files ..> configure : <<extend>>
+replay ..> watch : <<extend>>
+developer --> watch
+developer --> batch
+@enduml

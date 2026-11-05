@@ -1,0 +1,35 @@
+@startuml turn-sequence
+!include style.iuml
+title One turn: the token lands on a draw-a-card cell and draws a spring card
+
+actor Observer
+participant "GamePanel\n(ui)" as panel
+participant "Game" as game
+participant "Turn" as turn
+participant "Special.DRAW_CARD\n(Command)" as draw
+participant "Card.SPRING" as card
+participant "listeners\n(trace, GUI, Stats)" as listeners
+
+Observer -> panel : Step (Space)
+panel -> game : playTurn()
+game -> listeners : TurnStarted
+game -> turn ** : new Turn(game, player)
+game -> turn : rollAndMove()
+turn -> game : rollDie() x 2
+turn -> listeners : DiceRolled
+turn -> turn : moveBy(roll)
+turn -> listeners : PlayerMoved
+turn -> turn : resolve(cell)
+turn -> listeners : SpecialReached
+turn -> draw : applyTo(turn)
+draw -> turn : drawCard()
+turn -> game : drawCard(), putAtTheBottom(card)
+turn -> listeners : CardDrawn
+turn -> card : effect()
+card --> turn : Special.SPRING
+turn -> turn : moveBy(lastRoll)
+turn -> listeners : PlayerMoved
+turn --> game
+game --> panel
+panel -> panel : animate the moves,\nappend the trace lines
+@enduml

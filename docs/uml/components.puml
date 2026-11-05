@@ -1,0 +1,51 @@
+@startuml components
+!include style.iuml
+title Components and layers
+
+package "ui" {
+  [ui.swing\nMainWindow, GamePanel,\nBoardRenderer, ConfigDialog] as swing
+  [ui.cli\nCli] as cli
+  [Main] as main
+}
+package "application" {
+  [Simulation\n(Facade)] as simulation
+  [TraceFormatter] as trace
+  [Stats\n(Observer)] as stats
+}
+package "domain" {
+  [Game, Turn, Player] as game
+  [GameConfig, Jump,\nSpecial, Card] as config
+  [GameEvent\n(sealed records)] as events
+  [RandomBoards\n(static factory)] as random
+}
+package "infrastructure" {
+  [ConfigRepository\n+ ConfigFileV1 (DTO)] as repository
+}
+database "configs/*.json\nsaved files" as files
+[FlatLaf] as flatlaf
+[Jackson] as jackson
+
+main --> swing
+main --> cli
+swing --> simulation
+swing --> trace
+swing --> repository
+cli --> simulation
+cli --> trace
+cli --> repository
+simulation --> game
+simulation --> random
+stats --> events
+trace --> events
+game --> config
+game --> events
+repository --> config
+repository --> files
+repository ..> jackson
+swing ..> flatlaf
+
+note bottom of game
+  The domain uses only java.lang and java.util:
+  ArchitectureTest fails the build otherwise.
+end note
+@enduml

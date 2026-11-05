@@ -1,0 +1,91 @@
+@startuml domain-classes
+!include style.iuml
+title Domain model
+
+class GameConfig <<record>> {
+  rows : int
+  columns : int
+  dice : int
+  singleDieNearEnd : boolean
+  doubleSixBonus : boolean
+  ladders : List<Jump>
+  snakes : List<Jump>
+  specials : Map<Integer, Special>
+  deck : List<Card>
+  --
+  {static} builder(rows, columns) : Builder
+  size() : int
+  rowOf(cell) : int
+}
+class "GameConfig.Builder" as Builder {
+  dice(int) / ladder(foot, top) / snake(head, tail)
+  special(cell, Special) / deck(List<Card>)
+  build() : GameConfig
+}
+class Jump <<record>> {
+  from : int
+  to : int
+  isLadder() : boolean
+}
+enum Special <<Command>> {
+  BENCH
+  INN
+  DICE
+  SPRING
+  DRAW_CARD
+  --
+  ~applyTo(Turn)
+}
+enum Card {
+  BENCH
+  INN
+  DICE
+  SPRING
+  NO_REST
+  --
+  effect() : Optional<Special>
+  {static} standardDeck(withNoRestCard)
+}
+class Game {
+  +Game(GameConfig, players, RandomGenerator)
+  +addListener(Consumer<GameEvent>)
+  +playTurn()
+  +isOver() : boolean
+  +winner() : Optional<Player>
+}
+class Turn {
+  ~rollAndMove()
+  ~moveBy(steps)
+  ~rest(turns)
+  ~drawCard()
+  ~lastRoll() : int
+}
+class Player {
+  id : int
+  position : int
+  restTurns : int
+  noRestCards : int
+}
+interface GameEvent <<sealed>>
+class RandomBoards <<static factory>> {
+  {static} builder(rows, columns, ladders,\n snakes, specials, random) : Builder
+}
+
+Builder ..> GameConfig : creates
+RandomBoards ..> Builder : fills
+GameConfig *-- "0..*" Jump
+GameConfig o-- "0..*" Special
+GameConfig o-- "0..*" Card
+Card --> "0..1" Special : effect
+Game --> GameConfig
+Game *-- "1..6" Player
+Game ..> Turn : creates one per turn
+Turn ..> Special : applyTo
+Game ..> GameEvent : emits
+note right of GameEvent
+  TurnStarted, DiceRolled, PlayerMoved,
+  LadderClimbed, SnakeSlid, SpecialReached,
+  CardDrawn, RestStarted, RestAvoided,
+  TurnSkipped, DoubleSix, GameWon
+end note
+@enduml

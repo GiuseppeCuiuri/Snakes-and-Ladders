@@ -1,0 +1,29 @@
+# Build output
+target/
+out/
+*.class
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+
+# Editor swap files, OS files, crash logs
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+hs_err_pid*
+*.stackdump
+
+# jqwik writes its database here when run outside Maven
+.jqwik-database

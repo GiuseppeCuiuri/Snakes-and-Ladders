@@ -1,0 +1,36 @@
+{
+  "schemaVersion" : 1,
+  "rows" : 8,
+  "columns" : 6,
+  "dice" : 2,
+  "singleDieNearEnd" : true,
+  "doubleSixBonus" : false,
+  "ladders" : [ {
+    "from" : 2,
+    "to" : 15
+  }, {
+    "from" : 8,
+    "to" : 21
+  }, {
+    "from" : 19,
+    "to" : 30
+  }, {
+    "from" : 27,
+    "to" : 40
+  } ],
+  "snakes" : [ {
+    "from" : 24,
+    "to" : 11
+  }, {
+    "from" : 33,
+    "to" : 16
+  }, {
+    "from" : 43,
+    "to" : 29
+  }, {
+    "from" : 46,
+    "to" : 35
+  } ],
+  "specials" : [ ],
+  "deck" : [ ]
+}

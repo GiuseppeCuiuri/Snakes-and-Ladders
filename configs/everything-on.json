@@ -1,0 +1,96 @@
+{
+  "schemaVersion" : 1,
+  "rows" : 10,
+  "columns" : 10,
+  "dice" : 2,
+  "singleDieNearEnd" : true,
+  "doubleSixBonus" : true,
+  "ladders" : [ {
+    "from" : 3,
+    "to" : 22
+  }, {
+    "from" : 9,
+    "to" : 31
+  }, {
+    "from" : 20,
+    "to" : 41
+  }, {
+    "from" : 28,
+    "to" : 55
+  }, {
+    "from" : 36,
+    "to" : 57
+  }, {
+    "from" : 51,
+    "to" : 73
+  }, {
+    "from" : 63,
+    "to" : 81
+  }, {
+    "from" : 70,
+    "to" : 89
+  } ],
+  "snakes" : [ {
+    "from" : 17,
+    "to" : 7
+  }, {
+    "from" : 34,
+    "to" : 12
+  }, {
+    "from" : 46,
+    "to" : 25
+  }, {
+    "from" : 64,
+    "to" : 43
+  }, {
+    "from" : 74,
+    "to" : 53
+  }, {
+    "from" : 87,
+    "to" : 66
+  }, {
+    "from" : 93,
+    "to" : 72
+  }, {
+    "from" : 98,
+    "to" : 79
+  } ],
+  "specials" : [ {
+    "cell" : 5,
+    "type" : "BENCH"
+  }, {
+    "cell" : 13,
+    "type" : "DICE"
+  }, {
+    "cell" : 15,
+    "type" : "DRAW_CARD"
+  }, {
+    "cell" : 27,
+    "type" : "SPRING"
+  }, {
+    "cell" : 38,
+    "type" : "INN"
+  }, {
+    "cell" : 44,
+    "type" : "DRAW_CARD"
+  }, {
+    "cell" : 49,
+    "type" : "BENCH"
+  }, {
+    "cell" : 61,
+    "type" : "DICE"
+  }, {
+    "cell" : 68,
+    "type" : "DRAW_CARD"
+  }, {
+    "cell" : 77,
+    "type" : "SPRING"
+  }, {
+    "cell" : 84,
+    "type" : "INN"
+  }, {
+    "cell" : 91,
+    "type" : "DRAW_CARD"
+  } ],
+  "deck" : [ "BENCH", "INN", "DICE", "SPRING", "NO_REST" ]
+}
