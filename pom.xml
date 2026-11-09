@@ -124,7 +124,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.6.1</version>
           <configuration>
             <!-- GUI tests draw into images: they need no screen, here or on CI. -->
             <argLine>@{argLine} -Djava.awt.headless=true</argLine>
@@ -157,7 +157,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.15</version>
+        <version>0.8.16</version>
         <configuration>
           <includes>
             <include>${base.path}/**</include>
@@ -241,7 +241,7 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>14.3.0</version>
+            <version>14.4.0</version>
           </dependency>
         </dependencies>
         <configuration>
