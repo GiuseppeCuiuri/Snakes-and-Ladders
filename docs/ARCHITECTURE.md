@@ -119,7 +119,7 @@ it runs the command line.
 
 | Gate | Tool | Fails the build when |
 |---|---|---|
-| Unit, scenario and property tests | JUnit 5, AssertJ, jqwik | any test fails |
+| Unit, scenario and property tests | JUnit 6, AssertJ, jqwik | any test fails |
 | Architecture | ArchUnit | a layering or design rule is broken |
 | Coverage | JaCoCo | the `domain` package drops below 80% of lines or branches |
 | Formatting | Spotless (google-java-format) | the code is not formatted |

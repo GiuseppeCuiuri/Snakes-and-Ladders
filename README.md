@@ -169,7 +169,7 @@ Details, UML diagrams and the decisions behind them: [ARCHITECTURE.md](docs/ARCH
 
 | Check | Tool |
 |---|---|
-| Rule scenarios, including worked examples | JUnit 5, AssertJ |
+| Rule scenarios, including worked examples | JUnit 6, AssertJ |
 | Properties on hundreds of random boards: tokens stay on the board, seeds replay games | jqwik |
 | Layering, a JDK-only domain, final static fields only, randomness created in one layer | ArchUnit |
 | At least 80% line and branch coverage of the domain (currently 99.7% and 95.5%) | JaCoCo |

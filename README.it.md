@@ -174,7 +174,7 @@ Dettagli, diagrammi UML e decisioni: [ARCHITECTURE.md](docs/ARCHITECTURE.md) e [
 
 | Controllo | Strumento |
 |---|---|
-| Scenari delle regole, compresi esempi svolti | JUnit 5, AssertJ |
+| Scenari delle regole, compresi esempi svolti | JUnit 6, AssertJ |
 | Proprietà su centinaia di tabelloni casuali: le pedine restano sul tabellone, i seed rigiocano le partite | jqwik |
 | Layering, dominio che usa solo il JDK, solo campi statici final, casualità creata in un solo livello | ArchUnit |
 | Almeno l'80% di copertura di righe e rami del dominio (oggi 99,7% e 95,5%) | JaCoCo |
